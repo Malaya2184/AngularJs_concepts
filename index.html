@@ -18,10 +18,18 @@
         <!-- {{upercase}} -->
         <!-- {{sayMessage(name)}} -->
         {{sayFilteredMessage(name)}}
+        <!-- <br> -->
+        <!-- way to use the filter directly in html without passing it to the controller only reqd to regester the custom filter-->
+        <!-- {{'malaya likes chicken' | custom }} -->
+        <!-- <br> -->
+        <!-- filter chaining -->
+        <!-- {{'malaya likes chicken' | custom |uppercase}} -->
         <br>
-        <!-- way to use the filter directly in html without passing it to the controller -->
-        {{'malaya likes chicken' | custom}}
-        
+        <!-- applying the custom filter  directly in html by passing the arguments  -->
+        {{'malaya likes chicken' | custom: 'likes' : 'loves' }}
+        <br>
+       
+        {{'malaya likes chicken' | custom: 'likes' : 'loves' | uppercase}}
 
     </div>
     
