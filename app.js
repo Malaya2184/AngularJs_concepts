@@ -3,69 +3,45 @@
 angular.module("MyFirstApp", [])
 
 
-.controller("MyFirstController",MyFirstController)
-.filter('custom',customFilterFactorty);
-MyFirstController.$inject = ['$scope','$filter', '$injector','customFilter'];
+.controller("MyFirstController",MyFirstController);
+MyFirstController.$inject = ['$scope','$filter','$timeout'];
 
-function MyFirstController($scope,$filter,$injector,customFilter){
-$scope.name = "Malaya";
-$scope.upercase ="";
-
-// $scope.upper = function(){
-//     var Upcase = $filter('uppercase');
-//     $scope.upercase = Upcase($scope.name);
-// }
-// console.log($injector.annotate(MyFirstController));
-
-// $scope.sayMessage = function (name) {
-//     var msg = "hello whatsapp ";
+function MyFirstController($scope,$filter, $timeout){
+$scope.value = 0;
+$scope.a= 3;
+$scope.b= 4;
+$scope.c= 5;
+//implementd of $timeout
+$scope.upcount = function () {
+    $timeout(function(){
+        $scope.value++;
+        console.log('incremented by one');
+        },1000);
     
-//     return ($filter('uppercase')(msg + name));
-//  }
+};
+$scope.updateC=function () {
+    $scope.c = $scope.a*4;
+};
 
-//using customFilter
-// $scope.sayFilteredMessage = function (name) {
-//     var msg = "hello loves likes likes likes ";
-    
-//     return (customFilter(msg+name));
-//  }
+// watcher 5
+$scope.$watch("a", function(newvalue,oldvalue){
+    if(newvalue != oldvalue){
+        $scope.b = $scope.a*4;
+    }
+});
+// watcher 6
+$scope.$watch("b", function(newvalue,oldvalue){
+    if(newvalue != oldvalue){
+        $scope.c = $scope.b*4;
+    }
+});
+// watcher 7 here we told the angular to watch this scope variable by using $watch
+$scope.$watch("c", function(newvalue,oldvalue){
+    if(newvalue != oldvalue){
+        console.log("c is changed "+$scope.c);
+    }
+});
 
-//using customFilter with arguments
-$scope.sayFilteredMessage = function (name) {
-    var msg = "hello loves likes likes likes ";
-    
-    return (customFilter(msg,'likes','loves'));
- }
 }
-//custom filter with no arguments * always define it outside the controller scope
-    // function customFilterFactorty() {
-    //     return function (input){
-    //         input = input || "";
-    //         //this syntax is to replace the 1st likes in to loves
-    //         // input = input.replace('likes', 'loves');
-
-    //         //but this syntax replaces all likes to loves
-    //         input = input.replace(/likes/g, 'loves');
-    //         return input;
-    //     }
-
-
-    // }
-
-    //custom filter with arguments
-        function customFilterFactorty() {
-            return function (input, target, replace){
-                input = input || "";
-                //this syntax is to replace the 1st likes in to loves
-                // input = input.replace('likes', 'loves');
-
-                //but this syntax replaces all likes to loves
-                var regex = new RegExp(target, 'g');
-                input = input.replace(regex, replace);
-                //you can do the above line asbelow
-                // input= input.split(target).join(replace);
-                return input;
-            }
-        }
 
 })();

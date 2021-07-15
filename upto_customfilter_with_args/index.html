@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" ng-app = "MyFirstApp">
+<head>
+    <script src="https://code.angularjs.org/1.5.7/angular.min.js"></script>
+    <script src="app.js"></script>
+    <script></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AngularJs practice</title>
+</head>
+<body>
+    <h1>AngularJs practice</h1>
+    <div ng-controller="MyFirstController">
+        <input type="text" ng-model="name" >
+        <!-- {{name}} -->
+        <!-- <button ng-click="upper()">make me upper case</button> -->
+        <!-- {{upercase}} -->
+        <!-- {{sayMessage(name)}} -->
+        {{sayFilteredMessage(name)}}
+        <!-- <br> -->
+        <!-- way to use the filter directly in html without passing it to the controller only reqd to regester the custom filter-->
+        <!-- {{'malaya likes chicken' | custom }} -->
+        <!-- <br> -->
+        <!-- filter chaining -->
+        <!-- {{'malaya likes chicken' | custom |uppercase}} -->
+        <br>
+        <!-- applying the custom filter  directly in html by passing the arguments  -->
+        {{'malaya likes chicken' | custom: 'likes' : 'loves' }}
+        <br>
+       
+        {{'malaya likes chicken' | custom: 'likes' : 'loves' | uppercase}}
+
+    </div>
+    
+</body>
+</html>

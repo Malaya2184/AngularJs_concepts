@@ -12,24 +12,20 @@
 <body>
     <h1>AngularJs practice</h1>
     <div ng-controller="MyFirstController">
-        <input type="text" ng-model="name" >
-        <!-- {{name}} -->
-        <!-- <button ng-click="upper()">make me upper case</button> -->
-        <!-- {{upercase}} -->
-        <!-- {{sayMessage(name)}} -->
-        {{sayFilteredMessage(name)}}
-        <!-- <br> -->
-        <!-- way to use the filter directly in html without passing it to the controller only reqd to regester the custom filter-->
-        <!-- {{'malaya likes chicken' | custom }} -->
-        <!-- <br> -->
-        <!-- filter chaining -->
-        <!-- {{'malaya likes chicken' | custom |uppercase}} -->
+        <button ng-click="upcount()">up count by one</button>
         <br>
-        <!-- applying the custom filter  directly in html by passing the arguments  -->
-        {{'malaya likes chicken' | custom: 'likes' : 'loves' }}
+        <!-- watcher 1 -->
+        Value is :{{value}} 
         <br>
-       
-        {{'malaya likes chicken' | custom: 'likes' : 'loves' | uppercase}}
+        <!-- watcher 2 i.e 2way binding -->
+        value of a:<input type="text" ng-model="a" ng-change="updateC()">
+        <br>
+        <!-- watcher 3 -->
+        a={{a}}
+        <br>
+        <!-- watcher 4 -->
+        b={{b}}
+        
 
     </div>
     
