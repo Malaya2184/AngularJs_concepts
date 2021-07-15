@@ -11,6 +11,12 @@ $scope.value = 0;
 $scope.a= 3;
 $scope.b= 4;
 $scope.c= 5;
+
+$scope.obj = {
+    a : 10,
+    b : 20,
+    c : 30
+}
 //implementd of $timeout
 $scope.upcount = function () {
     $timeout(function(){
@@ -41,6 +47,13 @@ $scope.$watch("c", function(newvalue,oldvalue){
         console.log("c is changed "+$scope.c);
     }
 });
+// watcher 11
+// here true added to perform equality watch or deep watch so that watcher can track each element inside the object if you remove true value then it will watch only the object change i.e deletion or addition of elements to the object and will not track the object elements.
+$scope.$watch("obj", function(newvalue,oldvalue){
+    if(newvalue != oldvalue){
+        $scope.obj.c = $scope.obj.a +$scope.obj.b
+    }
+},true);
 
 }
 
