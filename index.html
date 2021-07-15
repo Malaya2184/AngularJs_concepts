@@ -12,7 +12,15 @@
 <body>
     <h1>AngularJs practice</h1>
     <div ng-controller="MyFirstController">
-        
+        <button ng-click = "logfirstname()">log first name</button>
+    <button ng-click = "setfullname()">set full name</button>
+    <button ng-click = "logfullname()">log full name</button>
+    <br>
+    fist name : <input type="text" ng-model="firstname">
+    <br>
+    <!-- //one way binding -->
+    fulll name is: {{ :: fullname}}
+
 
 
     </div>
