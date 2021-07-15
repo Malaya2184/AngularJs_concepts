@@ -49,11 +49,23 @@ $scope.$watch("c", function(newvalue,oldvalue){
 });
 // watcher 11
 // here true added to perform equality watch or deep watch so that watcher can track each element inside the object if you remove true value then it will watch only the object change i.e deletion or addition of elements to the object and will not track the object elements.
-$scope.$watch("obj", function(newvalue,oldvalue){
+//by using $watch
+// $scope.$watch("obj", function(newvalue,oldvalue){
+//     if(newvalue != oldvalue){
+//         $scope.obj.c = $scope.obj.a +$scope.obj.b
+//     }
+// },true);
+
+
+
+//by using $watchgroup
+//when  $watchgroup is used there is a watcher created for every element added to the group array
+// so here 2 watchers created for the array
+$scope.$watchGroup(['obj.a','obj.b'], function(newvalue,oldvalue){
     if(newvalue != oldvalue){
         $scope.obj.c = $scope.obj.a +$scope.obj.b
     }
-},true);
+});
 
 }
 
