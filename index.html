@@ -3,6 +3,7 @@
 <head>
     <script src="https://code.angularjs.org/1.5.7/angular.min.js"></script>
     <script src="app.js"></script>
+    <script src = "prototypalInherit.js"></script>
     <script></script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,13 +12,8 @@
 </head>
 <body>
     <h1>AngularJs practice</h1>
-    <h2>Filtering array in ng-repeat</h2>
-    <div ng-controller="MyFirstController">
-        <input type="text" placeholder="search item" ng-model= "search">
-        <ol>
-            <!-- //filtering the array by using ng-repeat and filter function (predefined) -->
-            <li ng-repeat = "item in shoppinglist1 | filter: search">{{item}}</li>
-        </ol>
+    <h2>controller as syntax / prototypal inheritance</h2>
+
         
 
 
