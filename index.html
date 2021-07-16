@@ -3,7 +3,7 @@
 <head>
     <script src="https://code.angularjs.org/1.5.7/angular.min.js"></script>
     <script src="app.js"></script>
-    <script src = "prototypalInherit.js"></script>
+    <!-- <script src = "prototypalInherit.js"></script> -->
     <script></script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,9 +12,23 @@
 </head>
 <body>
     <h1>AngularJs practice</h1>
-    <h2>controller as syntax / prototypal inheritance</h2>
+    <h2>controller as syntax / scope inheritance</h2>
+    <!-- <div ng-controller='MyFirstController as ctrl1'>
+        {{ctrl1.name}}
+        <div ng-controller='MySecondController as ctrl2'>
+            {{ctrl2.name}}
+            <br>
+            {{ctrl1.name}}
 
-        
+        </div>
+    </div> -->
+        <!-- ------------------------------ -->
+        <div ng-controller='MyFirstController'>
+            
+            <div ng-controller='MySecondController'>
+              
+            </div>
+        </div>
 
 
 
