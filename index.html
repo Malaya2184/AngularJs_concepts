@@ -12,10 +12,23 @@
 </head>
 <body>
     <h1>AngularJs practice</h1>
-    <h2>custom services</h2>
+    <h2>custom services / sharing the item between the controllers</h2>
 
-        <div ng-controller='MyFirstController'>
-            
+        <div ng-controller='MyFirstController as ctrl1'>
+            <input type="text" placeholder="item name" ng-model="ctrl1.itemname">
+            <input type="text" placeholder="item quantity" ng-model="ctrl1.itemquantity">
+            <button ng-click="ctrl1.additem()">submit</button>
+        </div>
+
+        <div ng-controller='MySecondController as ctrl2'>
+            <div><h2>Added Items are</h2></div>
+            <div>
+                <ol>
+                    <li ng-repeat="item in ctrl2.items">
+                        Item name is : {{item.itemname}} and quantity is : {{item.itemquantity}}
+                    </li>
+                </ol>
+            </div>
         </div>
 
 
