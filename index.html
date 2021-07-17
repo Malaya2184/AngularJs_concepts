@@ -26,6 +26,7 @@
                 <ol>
                     <li ng-repeat="item in ctrl2.items">
                         Item name is : {{item.itemname}} and quantity is : {{item.itemquantity}}
+                        <button ng-click="ctrl2.removeitem($index)">Remove</button>
                     </li>
                 </ol>
             </div>

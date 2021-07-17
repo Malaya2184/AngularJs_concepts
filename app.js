@@ -26,6 +26,9 @@ MySecondController.$inject = ['$scope','$filter','$timeout',"shopinglistservice"
 function MySecondController($scope,$filter, $timeout,shopinglistservice){
     var ctrl2= this;
     ctrl2.items = shopinglistservice.getitem();
+    ctrl2.removeitem = function(itemindex){
+        shopinglistservice.removeitem(itemindex);
+    }
         
     
         }
@@ -46,7 +49,9 @@ function shopinglistservice() {
         
         return items;
     }
-    
+    service.removeitem = function(itemindex){
+        items.splice(itemindex,1);
+    }
 }
 })();
 
