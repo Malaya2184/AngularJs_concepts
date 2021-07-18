@@ -12,6 +12,7 @@ MyFirstController.$inject = ['$scope','$filter','$timeout','shoppinglistService'
         var ctrl1 = this;
         ctrl1.itemname = "";
         ctrl1.itemquantity = "";
+        
         ctrl1.additem = function(){
             try {
                 if (ctrl1.itemname === "" &&
