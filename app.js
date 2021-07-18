@@ -16,6 +16,8 @@ function MyFirstController($scope,$filter, $timeout,shopinglistfactory){
     ctrl1.itemquantity = "";
     ctrl1.additem = function(){
         shopinglist.additem(ctrl1.itemname, ctrl1.itemquantity);
+        ctrl1.itemname = "";
+        ctrl1.itemquantity = "";
     }
     ctrl1.items = shopinglist.getitem();
 
@@ -28,11 +30,21 @@ function MyFirstController($scope,$filter, $timeout,shopinglistfactory){
     MySecondController.$inject = ['$scope','$filter','$timeout','shopinglistfactory'];
     function MySecondController($scope,$filter, $timeout,shopinglistfactory){
         var ctrl2 = this;
-        var shopinglist = shopinglistfactory();
+        var shopinglist = shopinglistfactory(5);
         ctrl2.itemname = "";
         ctrl2.itemquantity = "";
         ctrl2.additem = function(){
-            shopinglist.additem(ctrl2.itemname, ctrl2.itemquantity);
+            try{
+                shopinglist.additem(ctrl2.itemname, ctrl2.itemquantity);
+                ctrl2.itemname = "";
+                ctrl2.itemquantity = "";
+            }
+            catch(error){
+                ctrl2.itemname = "";
+                ctrl2.itemquantity = "";
+                ctrl2.errormessage = error.message;
+            }
+            
         }
         ctrl2.items = shopinglist.getitem();
     
@@ -51,29 +63,25 @@ function shopinglistservice(maxitem) {
     //function constructor
     var service = this;
     var items = [];
-
-    if(((maxitem == undefined)) || ((maxitem != undefined) && (items.length < maxitem))){
-
-
     service.additem = function(itemname, itemquantity){
+        if((maxitem == undefined) || (maxitem != undefined) && (items.length < maxitem)){
         var item = {
             itemname: itemname,
             itemquantity: itemquantity
         };
         items.push(item);
+    }
+    else{
+        throw new Error("Max item ("+maxitem+") Reached");
+    }
     };
     service.getitem = function(){
         
         return items;
     };
-    service.removeitem = function(itemindex){
-        items.splice(itemindex,1);
-    };
+    service.removeitem = function(index){
+        items.splice(index, 1);
     }
-    else {
-        throw new Error("Max item ("+maxitem+") Reached");
-    }
-
 }
 
 //note : you can't declarw these functions like var functionname = function()

@@ -23,16 +23,16 @@
                <ol>
                    <li ng-repeat="item in ctrl1.items">
                        item name : {{item.itemname}} item quantity : {{item.itemquantity}}
-                       <button ngc-click="ctrl1.removeitem($index)">remove item</button>
+                       <button ng-click="ctrl1.removeitem($index)">remove item</button>
                    </li>
                    
                </ol>
            </div>
-           <div>Erroe : {{ctrl1.errormessage}}</div>
+           <div>Error : {{ctrl1.errormessage}}</div>
         </div>
         <!-- shopping list with limited list -->
         <div ng-controller='MySecondController as ctrl2'>
-            <h3>shopping list with limited listing</h3>
+            <h3>shopping list with limited listing (5 listing alowed)</h3>
             <input type="text" ng-model="ctrl2.itemname" placeholder="item name">
             <input type="text" ng-model="ctrl2.itemquantity" placeholder="item quantity">
             <button ng-click= "ctrl2.additem()">Add item</button>
@@ -40,12 +40,12 @@
                 <ol>
                     <li ng-repeat="item in ctrl2.items">
                         item name : {{item.itemname}} item quantity : {{item.itemquantity}}
-                        <button ngc-click= "ctrl2.removeitem($index)">remove item</button>
+                        <button ng-click= "ctrl2.removeitem($index)">remove item</button>
                     </li>
                     
                 </ol>
             </div>
-            <div>Erroe : {{ctrl2.errormessage}}</div>
+            <div>Error : {{ctrl2.errormessage}}</div>
         </div>
     </div>
     
