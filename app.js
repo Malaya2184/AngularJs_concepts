@@ -5,7 +5,15 @@ angular.module("MyFirstApp", [])
 
 
 .controller("MyFirstController",MyFirstController)
-.provider("shoppinglistService", shoppinglistServiceProvider);
+.provider("shoppinglistService", shoppinglistServiceProvider)
+//.config always loads first before any controller and provider or services
+.config(Config);
+//here both injector and service are the name of the provider + Provider (note : it is not the provider function)
+Config.$inject= ["shoppinglistServiceProvider"];
+function Config(shoppinglistServiceProvider){
+    //over ridding takes place here
+    shoppinglistServiceProvider.defaults.maxitem = 5;
+}
     
 MyFirstController.$inject = ['$scope','$filter','$timeout','shoppinglistService'];
     function MyFirstController($scope,$filter, $timeout,shoppinglistService){
@@ -71,12 +79,15 @@ function shoppinglistService(maxitem) {
     }
 }
 
-//note : you can't declarw these functions like var functionname = function()
+//defn of provider function
 function shoppinglistServiceProvider(){
 var provider = this;
+//here we assign an variable/object i.e defaults to the provider object
 provider.defaults = {
     maxitem: 10
 }
+//here the $get method makes this provider obj to a Provider
+//generally it is crating a factory which will produce a service as per our requirements
 provider.$get = function(){
     
 var shoppinglist = new shoppinglistService(provider.defaults.maxitem);
@@ -86,4 +97,3 @@ return shoppinglist;
     
 })();
 
-//note : this is not for singleton application but we can use it as singletons
