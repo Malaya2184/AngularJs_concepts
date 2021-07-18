@@ -5,52 +5,39 @@ angular.module("MyFirstApp", [])
 
 
 .controller("MyFirstController",MyFirstController)
-.controller("MySecondController",MySecondController)
-.factory("shopinglistfactory",shopinglistfactory);
+.provider("shoppinglistService", shoppinglistServiceProvider);
     
-MyFirstController.$inject = ['$scope','$filter','$timeout','shopinglistfactory'];
-function MyFirstController($scope,$filter, $timeout,shopinglistfactory){
-    var ctrl1 = this;
-    var shopinglist = shopinglistfactory();
-    ctrl1.itemname = "";
-    ctrl1.itemquantity = "";
-    ctrl1.additem = function(){
-        shopinglist.additem(ctrl1.itemname, ctrl1.itemquantity);
+MyFirstController.$inject = ['$scope','$filter','$timeout','shoppinglistService'];
+    function MyFirstController($scope,$filter, $timeout,shoppinglistService){
+        var ctrl1 = this;
         ctrl1.itemname = "";
         ctrl1.itemquantity = "";
-    }
-    ctrl1.items = shopinglist.getitem();
+        ctrl1.additem = function(){
+            try {
+                if (ctrl1.itemname === "" &&
+                ctrl1.itemquantity === "") {
+                    alert("please add item name and quantity")
+                } else {
+                    shoppinglistService.additem(ctrl1.itemname,ctrl1.itemquantity);
+                    ctrl1.itemname = "";
+                    ctrl1.itemquantity = "";
+                }
 
-    ctrl1.removeitem = function(indexofitem){
-        shopinglist.removeitem(indexofitem);
-    }
-    
+                
+            } catch (error) {
+                ctrl1.errormessage= error.message;
+            }
 
-    }
-    MySecondController.$inject = ['$scope','$filter','$timeout','shopinglistfactory'];
-    function MySecondController($scope,$filter, $timeout,shopinglistfactory){
-        var ctrl2 = this;
-        var shopinglist = shopinglistfactory(5);
-        ctrl2.itemname = "";
-        ctrl2.itemquantity = "";
-        ctrl2.additem = function(){
-            try{
-                shopinglist.additem(ctrl2.itemname, ctrl2.itemquantity);
-                ctrl2.itemname = "";
-                ctrl2.itemquantity = "";
-            }
-            catch(error){
-                ctrl2.itemname = "";
-                ctrl2.itemquantity = "";
-                ctrl2.errormessage = error.message;
-            }
             
         }
-        ctrl2.items = shopinglist.getitem();
-    
-        ctrl2.removeitem = function(indexofitem){
-            shopinglist.removeitem(indexofitem);
+        ctrl1.items = shoppinglistService.getitem();
+
+        ctrl1.removeitem = function(indexofitem){
+            shoppinglistService.removeitem(indexofitem);
+            ctrl1.itemname = "";
+            ctrl1.itemquantity = "";
         }
+       
         
     
         }
@@ -59,7 +46,7 @@ function MyFirstController($scope,$filter, $timeout,shopinglistfactory){
 
 //declaration of service which will include in the factory functin
 //custom service function with function constructor
-function shopinglistservice(maxitem) {
+function shoppinglistService(maxitem) {
     //function constructor
     var service = this;
     var items = [];
@@ -85,12 +72,17 @@ function shopinglistservice(maxitem) {
 }
 
 //note : you can't declarw these functions like var functionname = function()
-function shopinglistfactory(){
-    var factory = function(maxitem){
-        return new shopinglistservice(maxitem);
-    };
-    return factory;
-};
+function shoppinglistServiceProvider(){
+var provider = this;
+provider.defaults = {
+    maxitem: 10
+}
+provider.$get = function(){
+    
+var shoppinglist = new shoppinglistService(provider.defaults.maxitem);
+return shoppinglist;
+}
+}
     
 })();
 
