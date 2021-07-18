@@ -12,28 +12,41 @@
 </head>
 <body>
     <h1>AngularJs practice</h1>
-    <h2>custom services / sharing the item between the controllers</h2>
-
+    <h2>factory [functional and object literal approach]</h2>
+    <!-- shopping list with unlimited list -->
         <div ng-controller='MyFirstController as ctrl1'>
-            <input type="text" placeholder="item name" ng-model="ctrl1.itemname">
-            <input type="text" placeholder="item quantity" ng-model="ctrl1.itemquantity">
-            <button ng-click="ctrl1.additem()">submit</button>
+           <h3>shopping list with unlimited listing</h3>
+           <input type="text" ng-model="ctrl1.itemname" placeholder="item name">
+           <input type="text" ng-model="ctrl1.itemquantity" placeholder="item quantity">
+           <button ng-click= "ctrl1.additem()">Add item</button>
+           <div>
+               <ol>
+                   <li ng-repeat="item in ctrl1.items">
+                       item name : {{item.itemname}} item quantity : {{item.itemquantity}}
+                       <button ngc-click="ctrl1.removeitem($index)">remove item</button>
+                   </li>
+                   
+               </ol>
+           </div>
+           <div>Erroe : {{ctrl1.errormessage}}</div>
         </div>
-
+        <!-- shopping list with limited list -->
         <div ng-controller='MySecondController as ctrl2'>
-            <div><h2>Added Items are</h2></div>
+            <h3>shopping list with limited listing</h3>
+            <input type="text" ng-model="ctrl2.itemname" placeholder="item name">
+            <input type="text" ng-model="ctrl2.itemquantity" placeholder="item quantity">
+            <button ng-click= "ctrl2.additem()">Add item</button>
             <div>
                 <ol>
                     <li ng-repeat="item in ctrl2.items">
-                        Item name is : {{item.itemname}} and quantity is : {{item.itemquantity}}
-                        <button ng-click="ctrl2.removeitem($index)">Remove</button>
+                        item name : {{item.itemname}} item quantity : {{item.itemquantity}}
+                        <button ngc-click= "ctrl2.removeitem($index)">remove item</button>
                     </li>
+                    
                 </ol>
             </div>
+            <div>Erroe : {{ctrl2.errormessage}}</div>
         </div>
-
-
-
     </div>
     
 </body>
