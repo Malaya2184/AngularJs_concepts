@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" ng-app = "MyFirstApp">
+<head>
+    <script src="https://code.angularjs.org/1.5.7/angular.min.js"></script>
+    <script src="app.js"></script>
+    <!-- <script src = "prototypalInherit.js"></script> -->
+    <script></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AngularJs practice</title>
+</head>
+<body>
+    <h1>AngularJs practice</h1>
+    <h2>factory [functional and object literal approach]</h2>
+    <!-- shopping list with unlimited list -->
+        <div ng-controller='MyFirstController as ctrl1'>
+           <h3>.provider method and .config method  </h3>
+           <input type="text" ng-model="ctrl1.itemname" placeholder="item name">
+           <input type="text" ng-model="ctrl1.itemquantity" placeholder="item quantity">
+           <button ng-click= "ctrl1.additem()">Add item</button>
+           <div>
+               <ol>
+                   <li ng-repeat="item in ctrl1.items">
+                       item name : {{item.itemname}} item quantity : {{item.itemquantity}}
+                       <button ng-click="ctrl1.removeitem($index)">remove item</button>
+                   </li>
+                   
+               </ol>
+           </div>
+           <div>Error : {{ctrl1.errormessage}}</div>
+        </div>
+       
+    
+</body>
+</html>
