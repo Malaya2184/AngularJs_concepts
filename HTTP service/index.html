@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" ng-app = "MyFirstApp">
+<head>
+    <script src="https://code.angularjs.org/1.5.7/angular.min.js"></script>
+    <script src="app.js"></script>
+    <!-- <script src = "prototypalInherit.js"></script> -->
+    <script></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AngularJs practice</title>
+</head>
+<body>
+    <h1>AngularJs practice</h1>
+    <h2>HTTP [method, url, params]</h2>
+    <!-- shopping list with unlimited list -->
+        <div ng-controller='MyFirstController as ctrl1'>
+           <ul>
+               <li ng-repeat = "category in ctrl1.categories">
+                   <a href="" ng-click="ctrl1.logmenuitems(category.short_name)">({{category.short_name}})</a> 
+                   {{category.name}}
+               </li>
+           </ul>
+           
+           </div>
+           
+           <div>
+           
+        </div>
+       
+    
+</body>
+</html>
