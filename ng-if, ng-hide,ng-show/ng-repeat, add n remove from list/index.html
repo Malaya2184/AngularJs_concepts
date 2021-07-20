@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" ng-app = "MyFirstApp">
+<head>
+    <script src="https://code.angularjs.org/1.5.7/angular.min.js"></script>
+    <script src="app.js"></script>
+    <script></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AngularJs practice</title>
+</head>
+<body>
+    <h1>AngularJs practice</h1>
+    <div ng-controller="MyFirstController">
+        <h2>shopping list 1</h2>
+        <ul>
+            <!-- here the number of watchers is 9 beacuse there are 8 items in shopping list1 so that due to ng-repeat 8 watchers attached to 8 items but anathor wtcher is attached to the shoppinglist1 array so that total is 9 -->
+            <li ng-repeat = "item in shoppinglist1">{{$index+1}}/ {{item}}</li>
+            <!-- if you will add $index to get items index position then for every items there will be a watcher assigned so in this case watcher will be 8 and total will be 17 for shoppinglist1 -->
+        </ul>
+        <input type="text" ng-model="itemname" placeholder="type item name"> 
+        <button ng-click="addtoshoppinglist1()">add item to shoppinglist1</button>
+        <button ng-click="removefromshoppinglist1()">remove item to shoppinglist1</button>
+        <h2>shopping list 2</h2>
+        <ul>
+            <!-- here the number of watchers is 13 i.e 12 for 12 elements i.e each name and quantity and anathor for the array -->
+            <li ng-repeat = "item in shoppinglist2">name is {{item.name}} and  quantity is {{item.quantity}}</li>
+        </ul>
+        
+
+
+
+    </div>
+    
+</body>
+</html>
